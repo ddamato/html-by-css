@@ -49,12 +49,18 @@ describe('html-by-css', function () {
 
     it('should generate additional nodes using emmet', function () {
       const { html: $ } = fixture('emmet.css');
-      const li = $('ul').children();
+      const li = $('ul').find('li');
       expect(li.length).to.equal(5);
       const hrefs = li.map(function() {
         return $(this).children().first().attr('href')
       }).get();
       expect(hrefs.join('')).to.equal('#####');
+    });
+
+    it('should skip HTML rendering using *0', function () {
+      const { html: $ } = fixture('skip.css');
+      const { length } = $('ul').find('a');
+      expect(length).to.equal(3);
     });
 
     it('should generate content', function () {
@@ -87,9 +93,16 @@ describe('html-by-css', function () {
 
     it('should not generate emmet selectors', function () {
       const { css } = fixture('emmet.css');
-      expect(css.rules.total).to.equal(2);
-      expect(css.selectors.total).to.equal(2);
-      expect(css.declarations.total).to.equal(5);
+      expect(css.rules.total).to.equal(3);
+      expect(css.selectors.total).to.equal(3);
+      expect(css.declarations.total).to.equal(8);
+    });
+
+    it('should include rendering using *0', function () {
+      const { css } = fixture('skip.css');
+      expect(css.rules.total).to.equal(6);
+      expect(css.selectors.total).to.equal(6);
+      expect(css.declarations.total).to.equal(8);
     });
 
     it('should not include content with non-psuedo' , function () {

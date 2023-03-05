@@ -1,0 +1,26 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  & li.item {
+    padding: .5rem;
+    & a*0 {
+      color: inherit;
+      font-size: 1.2em;
+    }
+
+    & a[href="/home"] {
+      content: Home;
+    }
+
+    & a[href="/about"] {
+      content: About;
+    }
+
+    & a[href="/contact"] {
+      content: Contact;
+    }
+  }
+}

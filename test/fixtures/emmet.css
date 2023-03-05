@@ -5,7 +5,8 @@ ul {
   display: flex;
   gap: 1rem;
   & li.item*5 {
-    a[href="#"] {
+    padding: .5rem;
+    & a[href="#"] {
       color: inherit;
       font-size: 1.2em;
     }

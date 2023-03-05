@@ -145,6 +145,46 @@ const { html, css } = generate(source, { plugins: postcssPlugins });
 >
 > Do not use `legacy: true` with your own [`postcss-nesting`] configuration. The internal (`legacy`) usage will run first. Either do not declare or explicitly set `legacy: false`. This is only when using a custom [`postcss-nesting`], all other plugins can be used with `legacy: true`.
 
+### PostCSS plugins
+
+You can include additional [`postcss`] plugins. Example below helps with [removing duplicate declarations](https://www.npmjs.com/package/postcss-discard-duplicates).
+
+```js
+import dedupe from 'postcss-discard-duplicates';
+import generate from 'html-by-css';
+
+const postcssPlugins = [dedupe()];
+const { html, css } = generate(source, { plugins: postcssPlugins });
+```
+
+This is helpful if you have several similar elements with different contents.
+
+```css
+ul#list {
+  & li.item {
+    & a*0 {
+      color: inherit;
+    }
+
+    & a[href="/home"] {
+      content: Home;
+    }
+
+    & a[href="/about"] {
+      content: About;
+    }
+
+    & a[href="/contact"] {
+      content: Contact
+    }
+  }
+}
+```
+
+> **Note**
+>
+> The use of `a*0` says _write the styles found here, but don't write HTML_. When you use this, the represented node and it's children will not be written as HTML.
+
 ### Duplicate nodes
 
 To create multiple elements, use [`emmet`] syntax.
