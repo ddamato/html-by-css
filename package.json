@@ -1,6 +1,6 @@
 {
   "name": "html-by-css",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Generate html by writing css",
   "main": "./dist/index.cjs",
   "type": "module",
