@@ -1,0 +1,26 @@
+ul#list {
+  background: var(--background-color);
+  list-style: none;
+  & li.item*5 {
+    margin-block: calc(100% - 5rem);
+    :is(a[href="#"]) {
+      border: var(--border-width) solid rgba(255, 100, 50, .4);
+    }
+
+    .btn.primary[style="color: red; display: flex;"] {
+      padding: 16px;
+    }
+
+    :where(button.some-class):not(.secondary) {
+      overflow: hidden;
+    }
+
+    #special-thing:before {
+      /* This declaration left intentionally blank */
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+		color: cyan;
+	}
+}

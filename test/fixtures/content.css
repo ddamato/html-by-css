@@ -1,0 +1,11 @@
+main {
+  padding: 10vw;
+  &:before {
+    content: '';
+    display: block;
+  }
+  & h1 {
+    content: Hello world!;
+    font-size: 2rem;
+  }
+}

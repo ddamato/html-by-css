@@ -1,0 +1,55 @@
+{
+  "name": "html-by-css",
+  "version": "0.0.1",
+  "description": "Generate html by writing css",
+  "main": "./dist/index.cjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && unbuild",
+    "clean": "rm -rf ./dist",
+    "test": "npm run build && mocha",
+    "prepublishOnly": "npm test",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddamato/html-by-css.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "generate",
+    "parse",
+    "nest",
+    "nesting"
+  ],
+  "author": "Donnie D'Amato <fauxserious@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddamato/html-by-css/issues"
+  },
+  "homepage": "https://github.com/ddamato/html-by-css#readme",
+  "dependencies": {
+    "css-what": "^6.1.0",
+    "himalaya": "^1.1.0",
+    "postcss": "^8.4",
+    "postcss-nesting": "^11.2.1"
+  },
+  "devDependencies": {
+    "@projectwallace/css-analyzer": "^5.8.0",
+    "auto-changelog": "^2.4.0",
+    "chai": "^4.3.7",
+    "cheerio": "^1.0.0-rc.12",
+    "mocha": "^10.2.0",
+    "unbuild": "^1.1.2"
+  }
+}

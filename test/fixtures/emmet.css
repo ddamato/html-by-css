@@ -1,0 +1,13 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  & li.item*5 {
+    a[href="#"] {
+      color: inherit;
+      font-size: 1.2em;
+    }
+  }
+}
