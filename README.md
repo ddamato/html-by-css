@@ -101,25 +101,25 @@ The nesting should be prepared using [the current w3 CSS Nesting specification](
 
 ```css
 .foo {
-	/* ❌ invalid */
-	span {
-		color: hotpink;
-	}
+  /* ❌ invalid */
+  span {
+    color: hotpink;
+  }
 
-	/* ✅ valid */
-	& span {
-		color: hotpink;
-	}
+  /* ✅ valid */
+  & span {
+    color: hotpink;
+  }
 
-	/* ❌ invalid */
-	span & {
-		color: hotpink;
-	}
+  /* ❌ invalid */
+  span & {
+    color: hotpink;
+  }
 
-	/* ✅ valid */
-	:is(span) & {
-		color: hotpink;
-	}
+  /* ✅ valid */
+  :is(span) & {
+    color: hotpink;
+  }
 }	
 ```
 
