@@ -1,0 +1,7 @@
+ul#list {
+  & li.item*3 {
+    a[href="#"] {
+      content: Only HTML;
+    }
+  }
+}

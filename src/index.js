@@ -4,12 +4,15 @@ const { stringify } = require('himalaya');
 const transformer = require('./transformer.js');
 const rename = require('./rename.js');
 const remove = require('./remove.js');
+const empty = require('./empty.js');
 
 const DEFAULT_PLUGINS = [
   // Removing the emmet syntax
   rename({ replace: (raw) => raw.replace(/\*\d+$/, '') }),
   // Remove content on non-pseudos
-  remove({ property: 'content', filter: (sel) => !/(.*::?)(after|before)/.test(sel) })
+  remove({ property: 'content', filter: (sel) => !/(.*::?)(after|before)/.test(sel) }),
+  // Remove empty declarations
+  empty()
 ];
 
 /**

@@ -68,17 +68,32 @@ function remove$1(options) {
 }
 var remove_1 = remove$1;
 
+function empty$1() {
+  return (tree) => tree.walkRules((rule) => ancestors(rule));
+}
+function ancestors(rule) {
+  const { parent } = rule;
+  if (rule.nodes.length)
+    return;
+  rule.remove();
+  parent && ancestors(parent);
+}
+var empty_1 = empty$1;
+
 const postcss = require$$0$1;
 const postcssNesting = require$$1;
 const { stringify } = require$$2;
 const transformer = transformer_1;
 const rename = rename_1;
 const remove = remove_1;
+const empty = empty_1;
 const DEFAULT_PLUGINS = [
   // Removing the emmet syntax
   rename({ replace: (raw) => raw.replace(/\*\d+$/, "") }),
   // Remove content on non-pseudos
-  remove({ property: "content", filter: (sel) => !/(.*::?)(after|before)/.test(sel) })
+  remove({ property: "content", filter: (sel) => !/(.*::?)(after|before)/.test(sel) }),
+  // Remove empty declarations
+  empty()
 ];
 function parseMultiplier(selector) {
   const { groups } = selector.match(/[^*]+\*(?<multi>\d+)/, "gmisu") || {};
